@@ -1,6 +1,7 @@
 const https = require('https')
 
 const username = process.argv[2]
+const eventType = process.argv[3]?.toLowerCase() 
 
 if(!username) {
   console.log('Please, provide a github username')
@@ -25,8 +26,12 @@ https.get(url, options, (res) => {
   res.on('end', () => {
     if(res.statusCode == 200) {
       const events = JSON.parse(data)
+    
+      const filteredEvents = eventType
+      ? events.filter(event => event.type.toLowerCase() == eventType)
+      : events
 
-      events.slice(0, 5).forEach((event) => {
+      filteredEvents.slice(0, 5).forEach((event) => {
         switch(event.type) {
           case 'PushEvent':
             console.log(`Pushed ${event.payload.commits.length} commits to ${event.repo.name}`)
