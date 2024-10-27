@@ -1,6 +1,7 @@
 # Github user activity
 
-This is simple command-line interface (CLI) project for to fetch the recent activity of a GitHub user
+This is simple command-line interface (CLI) project for to fetch the recent activity of a GitHub user.
+https://roadmap.sh/projects/github-user-activity
 
 ## Installation 
 
